@@ -169,6 +169,12 @@ def show_post(post_id):
 @admin_only
 def admin_control():
     users = User.query.all()
+    if request.method == "POST":
+        new_user_name = request.form["new_name"]
+        user_id = request.form["user_id"]
+        user = User.query.get(user_id)
+        user.name = new_user_name
+        db.session.commit()
     return render_template("admin-only.html", users=users)
 
 

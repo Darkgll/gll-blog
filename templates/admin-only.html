@@ -31,6 +31,12 @@
               NAME: {{user.name}}
             </h3>
             <br>
+                <form action="{{ url_for('admin_control') }}" method="post">
+                    <input type="text" name="new_name" placeholder="New Name" required="required" />
+                    <input type="text" name="user_id" placeholder="User ID" required="required" />
+                    <button type="submit" class="btn btn-primary btn-block btn-large">Change the name.</button>
+                </form>
+            <br>
           <p class="post-meta">
 <!--if user breaks rules of this site he can be deleted-->
             {% if current_user.is_authenticated: %}
