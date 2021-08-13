@@ -164,6 +164,24 @@ def show_post(post_id):
         "post.html", post=requested_post, form=form, current_user=current_user, comments=comments_posts, admins=admins)
 
 
+# users control
+@app.route("/admin-only", methods=["GET", "POST"])
+@admin_only
+def admin_control():
+    users = User.query.all()
+    return render_template("admin-only.html", users=users)
+
+
+# delete user
+@app.route("/delete/<int:user_id>")
+@admin_only
+def delete_user(user_id):
+    user_to_delete = User.query.get(user_id)
+    db.session.delete(user_to_delete)
+    db.session.commit()
+    return redirect(url_for('admin_control'))
+
+
 @app.route("/about")
 def about():
     return render_template("about.html")
