@@ -1,0 +1,86 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({{ url_for('static', filename='img/anton-guitar.jpg') }})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>About Me</h1>
+            <span class="subheading">In a few words.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p class="about_me">In <strong>2019</strong> I have graduated from the <em>Financial University under
+                    the Government
+                    of the Russian Federation (Barnaul Branch)</em>.
+                    After graduating, I was invited to work in a new startup project for the development of an
+                    educational cryptocurrency online exchange. In time, I realized, that this work will not give me a
+                    good future. Due to the pandemic,
+                    the project was closed. After this i decided to search for what I really want to do in my life.
+                    I wanted to do something interesting, something that can be really beneficial for people, not only
+                    for myself,
+                    and at the end, I have made a very important decision to learn programming.
+                </p>
+                <div class="qualifications">
+                    <h3 class="about_me">Courses and qualifications:</h3>
+                    <p>07.06.2021 - present <a href="https://www.udemy.com/course/100-days-of-code/">Udemy (100 Days of
+                        Code - The Complete Python Pro Bootcamp for 2021)</a></p>
+                    <p>2021年6月9日(水) <a href="https://www.careercross.com/en/">CareerCross Internship Program for English
+                        Speakers in Japan</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <section class="colored-section container-fluid">
+
+        <h1>My hobbies</h1>
+
+    </section>
+
+    <section class="colored-section" id="testimonials">
+
+    <div id="testimonial-carousel" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active container-fluid">
+                <img class="testimonial-image" src="{{ url_for('static', filename='img/nl.jpg') }}" alt="night-lords">
+                <br>
+                <em><a class="testimonial-text" href="https://www.instagram.com/p/B7EXbJlIESGcHz4iZ3b1V2oOvtKelgGiT64aAg0/">All of this started since I read Night Lords omnibus by
+                    Aaron Dembski-Bowden.
+                    Can't say that I like to play tabletop wargames that much, but definitely can say that
+                    I like to assemble and paint these miniatures.</a></em>
+            </div>
+            <div class="carousel-item container-fluid">
+                <img class="testimonial-image" src="{{ url_for('static', filename='img/m4-part2-guitar.bmp') }}" alt="guitar-cover">
+                <br>
+                <em><a class="testimonial-text" href="https://youtu.be/wPUw93Q6yDM">I'm just an amateur guitar player. Always wanted to be able to play
+                    some of my favorite songs. And dreams can turn to be true!</a></em>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+
+</section>
+
+</main>
+
+  <hr>
+
+  {% include "footer.html" %}
