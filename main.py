@@ -17,11 +17,6 @@ import random
 import os
 
 
-# Handling email conformation
-g_my_email = os.environ.get('MAIL_USERNAME')
-g_password = os.environ.get('MAIL_PASSWORD')
-
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
@@ -40,6 +35,8 @@ gravatar = Gravatar(app,
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL",  "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECURITY_PASSWORD_SALT'] = os.environ.get('PASSWORD_SALT')
+app.config['NOTIFICATION_EMAIL'] = os.environ.get('MAIL_USERNAME')
+app.config['NOTIFICATION_EMAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 db = SQLAlchemy(app)
 
 login_manager = LoginManager()
@@ -69,7 +66,7 @@ def confirm_token(token, expiration=3600):
 def send_email(to, subject, conf_url):
     with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
         connection.starttls()
-        connection.login(user=g_my_email, password=g_password)
+        connection.login(user=app.config['NOTIFICATION_EMAIL'], password=app.config['NOTIFICATION_EMAIL_PASSWORD'])
         connection.sendmail(from_addr=g_my_email, to_addrs=to,
                             msg=f'Subject:{subject}!'
                                 f'\n\n{conf_url}')
