@@ -30,6 +30,12 @@
             <h3 class="post-subtitle">
               NAME: {{user.name}}
             </h3>
+            <h3 class="post-subtitle">
+              Confirmed: {{user.confirmed}}
+            </h3>
+            <h3 class="post-subtitle">
+              Admin: {{user.admin}}
+            </h3>
             <br>
                 <form action="{{ url_for('admin_control') }}" method="post">
                     <input type="text" name="new_name" placeholder="New Name" required="required" />
@@ -40,11 +46,20 @@
           <p class="post-meta">
 <!--if user breaks rules of this site he can be deleted-->
             {% if current_user.is_authenticated: %}
-            {% if current_user.get_id() == "1": %}
+            {% if current_user.email == "tohaartuhov@mail.ru" or current_user.email == "sanamyi7@gmail.com": %}
             <a href="{{url_for('delete_user', user_id=user.id) }}">✘ -  DELETE THIS ACCOUNT</a>
             {% endif %}
             {% endif %}
-          
+
+          </p>
+          <p class="post-meta">
+<!--You may change the admin status-->
+            {% if current_user.is_authenticated: %}
+            {% if current_user.email == "tohaartuhov@mail.ru" or current_user.email == "sanamyi7@gmail.com": %}
+            <a href="{{url_for('make_admin', user_id=user.id) }}">CHANGE ADMIN STATUS</a>
+            {% endif %}
+            {% endif %}
+
           </p>
         </div>
         <hr>

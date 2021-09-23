@@ -9,6 +9,11 @@
                   <div class="site-heading">
                       <h1>Anton's Blog</h1>
                       <span class="subheading">My first steps in WEB.</span>
+                       {% with messages = get_flashed_messages() %}
+                        {% for message in messages: %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                       {% endwith %}
                   </div>
               </div>
           </div>
@@ -34,17 +39,17 @@
             on {{post.date}}
 
             {% if current_user.is_authenticated: %}
-            {% if post.author_id == current_user.id or current_user.get_id() == "1": %}
+            {% if post.author_id == current_user.id or current_user.email == "sanamyi7@gmail.com": %}
             <a href="{{url_for('delete_post', post_id=post.id) }}">✘</a>
             {% endif %}
             {% endif %}
-          
+
           </p>
         </div>
         <hr>
         {% endfor %}
         {% if current_user.is_authenticated: %}
-        {% if current_user.id in admins: %}
+        {% if current_user.admin: %}
         <!-- New Post -->
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="{{url_for('add_new_post')}}">Create New Post</a>
