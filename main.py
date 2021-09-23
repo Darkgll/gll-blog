@@ -67,7 +67,7 @@ def send_email(to, subject, conf_url):
     with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
         connection.starttls()
         connection.login(user=app.config['NOTIFICATION_EMAIL'], password=app.config['NOTIFICATION_EMAIL_PASSWORD'])
-        connection.sendmail(from_addr=g_my_email, to_addrs=to,
+        connection.sendmail(from_addr=app.config['NOTIFICATION_EMAIL'], to_addrs=to,
                             msg=f'Subject:{subject}!'
                                 f'\n\n{conf_url}')
 
