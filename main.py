@@ -146,7 +146,7 @@ db.create_all()
 @app.route('/')
 def get_all_posts():
     posts = BlogPost.query.all()
-    return render_template("index.html", all_posts=posts, admins=admins)
+    return render_template("index.html", all_posts=posts)
 
 
 @app.route('/register', methods=["GET", "POST"])
