@@ -81,7 +81,7 @@ def admin_only(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if current_user.email != "sanamyi7@gmail.com" and current_user.email != "tohaartuhov@mail.ru":
-            if current_user.admin == False:
+            if not current_user.admin:
                 return abort(403)
         return f(*args, **kwargs)
     return decorated_function
@@ -136,6 +136,7 @@ class Comment(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comment_author = db.relationship("User", back_populates="comments")
     text = db.Column(db.Text, nullable=False)
+
 
 db.create_all()
 
@@ -361,7 +362,7 @@ def delete_comment(post_id, comment_post_id):
 @admin_only
 def make_admin(user_id):
     user = User.query.get(user_id)
-    if user.admin == False:
+    if not user.admin:
         user.admin = True
     else:
         user.admin = False
